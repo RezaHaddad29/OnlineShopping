@@ -1,0 +1,24 @@
+# Visual Studio
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+*.exe
+*.dll
+*.pdb
+
+# Package
+*.nupkg
+*.snupkg
+
+# User-specific files
+*.userprefs
+
+# Logs
+*.log
