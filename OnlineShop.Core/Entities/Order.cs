@@ -9,6 +9,7 @@
         public bool IsFinalized { get; set; }
         public int PaymentStatusID { get; set; }
         public int ShippingStatusID { get; set; }
+        public DateTime OrderDate { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 

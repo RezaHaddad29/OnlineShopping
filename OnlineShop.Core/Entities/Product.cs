@@ -17,6 +17,6 @@
         public Brand Brand { get; set; }
         public ICollection<Review> Reviews { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; }
-        public ICollection<FlashSale> FlashSales { get; set; }
+        public FlashSale FlashSale { get; set; }
     }
 }

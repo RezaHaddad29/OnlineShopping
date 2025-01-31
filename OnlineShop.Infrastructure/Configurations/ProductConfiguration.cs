@@ -7,31 +7,33 @@
             builder.HasKey(p => p.ID);
 
             builder.Property(p => p.Title)
-                .IsRequired()
-                .HasMaxLength(255);
+                   .IsRequired()
+                   .HasMaxLength(255);
 
             builder.Property(p => p.Price)
-                .IsRequired()
-                .HasColumnType("decimal(18,2)");
+                   .HasColumnType("decimal(18,2)");
+
+            builder.Property(p => p.Desc)
+                   .HasColumnType("TEXT");
 
             builder.Property(p => p.ImageURL)
-                .HasMaxLength(255);
+                   .HasMaxLength(255);
 
             builder.Property(p => p.CreatedAt)
-                .IsRequired();
+                   .HasDefaultValueSql("GETDATE()");
 
             builder.Property(p => p.UpdatedAt)
-                .IsRequired();
+                   .HasDefaultValueSql("GETDATE()");
 
             builder.HasOne(p => p.Category)
-                .WithMany(c => c.Products)
-                .HasForeignKey(p => p.CategoryID)
-                .OnDelete(DeleteBehavior.Restrict);
+                   .WithMany(c => c.Products)
+                   .HasForeignKey(p => p.CategoryID)
+                   .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(p => p.Brand)
-                .WithMany(b => b.Products)
-                .HasForeignKey(p => p.BrandID)
-                .OnDelete(DeleteBehavior.Restrict);
+                   .WithMany(b => b.Products)
+                   .HasForeignKey(p => p.BrandID)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 
