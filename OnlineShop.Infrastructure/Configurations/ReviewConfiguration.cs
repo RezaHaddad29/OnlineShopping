@@ -13,7 +13,9 @@ namespace OnlineShop.Infrastructure.Configurations
             builder.HasKey(r => r.ID);
             builder.Property(r => r.Rating).IsRequired().HasDefaultValue(5);
             builder.Property(r => r.Comment).HasMaxLength(1000);
-            builder.Property(r => r.CreatedAt).IsRequired();
+            builder.Property(pb => pb.CreatedAt)
+                   .HasDefaultValueSql("GETDATE()")
+                   .IsRequired();
 
             builder.HasOne(r => r.User)
                 .WithMany(u => u.Reviews)

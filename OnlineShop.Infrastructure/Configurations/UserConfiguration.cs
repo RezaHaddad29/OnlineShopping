@@ -7,22 +7,24 @@
             builder.HasKey(u => u.ID);
 
             builder.Property(u => u.UserName)
-                .IsRequired()
-                .HasMaxLength(100);
+                   .IsRequired()
+                   .HasMaxLength(100);
 
             builder.Property(u => u.Email)
-                .IsRequired()
-                .HasMaxLength(100);
+                   .IsRequired()
+                   .HasMaxLength(100);
 
             builder.Property(u => u.Password)
-                .IsRequired()
-                .HasMaxLength(255);
+                   .IsRequired()
+                   .HasMaxLength(255);
 
             builder.Property(u => u.CreatedAt)
-                .IsRequired();
+                   .IsRequired()
+                   .HasDefaultValueSql("GETDATE()");
 
             builder.Property(u => u.UpdatedAt)
-                .IsRequired();
+                   .IsRequired()
+                   .HasDefaultValueSql("GETDATE()");
         }
     }
 }

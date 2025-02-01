@@ -19,20 +19,20 @@ namespace OnlineShop.Infrastructure.Configurations
                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(o => o.Address)
-               .WithMany()
+               .WithMany(a => a.Orders)
                .HasForeignKey(o => o.AddressID)
                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(o => o.Status)
-               .WithMany()
+               .WithMany(s => s.Orders)
                .HasForeignKey(o => o.StatusID);
 
             builder.HasOne(o => o.PaymentStatus)
-                   .WithMany()
+                   .WithMany(p => p.Orders)
                    .HasForeignKey(o => o.PaymentStatusID);
 
             builder.HasOne(o => o.ShippingStatus)
-                   .WithMany()
+                   .WithMany(s => s.Orders)
                    .HasForeignKey(o => o.ShippingStatusID);
         }
     }

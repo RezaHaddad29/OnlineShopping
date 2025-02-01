@@ -5,6 +5,7 @@
         public int ID { get; set; }
         public int CategoryID { get; set; }
         public int BrandID { get; set; }
+        public int? FlashSaleID { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }
         public string Desc { get; set; }

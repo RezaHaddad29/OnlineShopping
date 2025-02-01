@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.Infrastructure.Configurations
 {
+
     public class FlashSaleConfiguration : IEntityTypeConfiguration<FlashSale>
     {
         public void Configure(EntityTypeBuilder<FlashSale> builder)
         {
-            builder.HasKey(f => f.ID);
+            builder.ToTable("FlashSales");
 
-            builder.Property(f => f.DiscountPercentage)
-                   .HasColumnType("decimal(5,2)");
+            builder.HasKey(f => f.ID);
 
             builder.Property(f => f.StartDate)
                    .IsRequired();
@@ -22,15 +22,12 @@ namespace OnlineShop.Infrastructure.Configurations
                    .IsRequired();
 
             builder.Property(f => f.CreatedAt)
-                   .HasDefaultValueSql("GETDATE()");
+                   .HasDefaultValueSql("GETDATE()")
+                   .IsRequired();
 
             builder.Property(f => f.UpdatedAt)
-                   .HasDefaultValueSql("GETDATE()");
-
-            builder.HasOne(f => f.Product)
-                   .WithOne(p => p.FlashSale)
-                   .HasForeignKey<FlashSale>(f => f.ProductID)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .HasDefaultValueSql("GETDATE()")
+                   .IsRequired();
         }
     }
 }
