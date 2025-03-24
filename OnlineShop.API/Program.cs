@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using OnlineShop.Application.Services;
+using OnlineShop.Core.Interfaces;
+using OnlineShop.Core.Interfaces.Persistence;
 using OnlineShop.Infrastructure.Data;
+using OnlineShop.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,11 +14,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+builder.Services.AddScoped<IProductRepository,ProductRepository>();
+builder.Services.AddScoped<IBrandRepository, BrandRepository>();
+builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
+
+builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<BrandService>();
+
+
 
 //Configure DB
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

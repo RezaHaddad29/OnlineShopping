@@ -1,6 +1,6 @@
 ﻿using OnlineShop.Core.Entities;
 
-namespace OnlineShop.Core.Interfaces
+namespace OnlineShop.Core.Interfaces.Persistence
 {
     public interface IOrderRepository : IRepository<Order>
     {

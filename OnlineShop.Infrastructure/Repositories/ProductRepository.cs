@@ -1,5 +1,4 @@
-﻿
-using OnlineShop.Core.Interfaces;
+﻿using OnlineShop.Core.Interfaces.Persistence;
 
 namespace OnlineShop.Infrastructure.Repositories
 {
@@ -12,29 +11,41 @@ namespace OnlineShop.Infrastructure.Repositories
             _context = context;
         }
 
-        public Task AddAsync(Product entity)
+        public async Task AddAsync(Product entity)
         {
-            throw new NotImplementedException();
+            await _context.Products.AddAsync(entity);
         }
 
         public void Delete(Product entity)
         {
-            throw new NotImplementedException();
+            _context.Products.Remove(entity);
         }
 
-        public Task<IEnumerable<Product>> GetAllAsync()
+        public async Task<IEnumerable<Product>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Products.ToListAsync();
         }
 
-        public Task<Product> GetByIdAsync(int id)
+        public async Task<IEnumerable<Product>> GetByBrandIdAsync(int brandId)
         {
-            throw new NotImplementedException();
+            return await _context.Products
+                    .Where(p => p.BrandID == brandId)
+                    .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Product>> GetByCategoryIdAsync(int categoryId)
+        {
+            return await _context.Products.Where(p => p.CategoryID == categoryId).ToListAsync();
+        }
+
+        public async Task<Product> GetByIdAsync(int id)
+        {
+            return await _context.Products.FirstAsync(p => p.ID == id);
         }
 
         public void Update(Product entity)
         {
-            throw new NotImplementedException();
+            _context.Products.Update(entity);
         }
     }
 
